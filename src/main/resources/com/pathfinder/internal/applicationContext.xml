@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="internalGraphTraversalService" class="com.pathfinder.internal.GraphTraversalServiceImpl">
+        <constructor-arg ref="graphDAO"/>
+    </bean>
+
+    <bean id="graphDAO" class="com.pathfinder.internal.GraphDAO"/>
+
+    <bean id="rmiGraphTraversalService" class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <!-- service 接口 -->
+        <property name="serviceInterface" value="com.pathfinder.api.GraphTraversalService"/>
+        <!-- 调用Service -->
+        <property name="service" ref="internalGraphTraversalService"/>
+        <!-- 定义服务名 -->
+        <property name="serviceName" value="PathFinder"/>
+        <!-- 注册端口号 -->
+        <property name="registryPort" value="1200"></property>
+    </bean>
+
+</beans>

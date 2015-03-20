@@ -1,0 +1,14 @@
+<!--defaultdir对应哪个目录-->
+<decorators defaultdir="/WEB-INF/jsp">
+    <!-- 此处用来定义不需要过滤的页面 -->
+    <excludes></excludes>
+
+    <!-- 用来定义装饰器要过滤的页面 -->
+    <decorator name="admin" page="adminDecorator.jsp">
+        <pattern>/admin</pattern>
+    </decorator>
+
+    <decorator name="main" page="publicDecorator.jsp">
+        <pattern>/public</pattern>
+    </decorator>
+</decorators>
